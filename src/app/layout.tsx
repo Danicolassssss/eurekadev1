@@ -30,6 +30,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
+        <div className="bg-yellow-400 text-yellow-900 text-center py-2 px-4 font-medium text-sm">
+          🚧 Site en construction - Certaines fonctionnalités peuvent être limitées. 🚧
+        </div>
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />

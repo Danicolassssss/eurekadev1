@@ -1,8 +1,85 @@
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
+import { useState } from "react";
 
 export default function Realisations() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImages, setCurrentImages] = useState<string[]>([]);
+
+  const lamdpImages = [
+    "/lamdp1.png",
+    "/lamdp2.png",
+    "/lamdp3.png",
+    "/lamdp4.png"
+  ];
+
+  const openLightbox = (images: string[], index: number) => {
+    setCurrentImages(images);
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+  };
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev + 1) % currentImages.length);
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setCurrentImageIndex((prev) => (prev - 1 + currentImages.length) % currentImages.length);
+  };
+
   return (
     <div className="bg-white">
+      {/* Lightbox */}
+      {lightboxOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black bg-opacity-90 flex items-center justify-center p-4"
+          onClick={closeLightbox}
+        >
+          <button
+            className="absolute top-4 right-4 text-white text-4xl hover:text-gray-300 focus:outline-none"
+            onClick={closeLightbox}
+          >
+            &times;
+          </button>
+
+          <button
+            className="absolute left-4 text-white text-4xl hover:text-gray-300 focus:outline-none hidden md:block"
+            onClick={prevImage}
+          >
+            &#10094;
+          </button>
+
+          <div className="relative w-full max-w-5xl h-[80vh]" onClick={(e) => e.stopPropagation()}>
+            <Image
+              src={currentImages[currentImageIndex]}
+              alt={`Image ${currentImageIndex + 1}`}
+              fill
+              className="object-contain"
+            />
+          </div>
+
+          <button
+            className="absolute right-4 text-white text-4xl hover:text-gray-300 focus:outline-none hidden md:block"
+            onClick={nextImage}
+          >
+            &#10095;
+          </button>
+
+          <div className="absolute bottom-4 left-0 right-0 text-center text-white">
+            {currentImageIndex + 1} / {currentImages.length}
+          </div>
+        </div>
+      )}
+
       {/* Intro Section */}
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 text-center">
@@ -18,16 +95,43 @@ export default function Realisations() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="lg:w-1/2">
-              <div className="bg-gray-200 rounded-lg aspect-video flex items-center justify-center text-gray-400 mb-4">
-                Image Maison des Pains
+              <div
+                className="relative bg-gray-200 rounded-lg aspect-video flex items-center justify-center text-gray-400 mb-4 overflow-hidden shadow-lg cursor-pointer hover:opacity-95 transition-opacity"
+                onClick={() => openLightbox(lamdpImages, 0)}
+              >
+                <Image
+                  src="/lamdp1.png"
+                  alt="La Maison des Pains - Accueil"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black bg-opacity-20">
+                  <span className="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded">Agrandir</span>
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gray-100 rounded h-24"></div>
-                <div className="bg-gray-100 rounded h-24"></div>
-                <div className="bg-gray-100 rounded h-24"></div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(lamdpImages, 1)}
+                >
+                  <Image src="/lamdp2.png" alt="Détail 1" fill className="object-cover" />
+                </div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(lamdpImages, 2)}
+                >
+                  <Image src="/lamdp3.png" alt="Détail 2" fill className="object-cover" />
+                </div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(lamdpImages, 3)}
+                >
+                  <Image src="/lamdp4.png" alt="Détail 3" fill className="object-cover" />
+                </div>
               </div>
             </div>
             <div className="lg:w-1/2">
+
               <div className="inline-block px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-semibold mb-4">
                 Site Vitrine + Catalogue
               </div>
@@ -52,7 +156,7 @@ export default function Realisations() {
                 <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Responsive</span>
               </div>
 
-              <Link href="#" className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition-colors">
+              <Link href="https://lamaisondupain.netlify.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition-colors">
                 Visiter le site (Démo)
               </Link>
             </div>

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function About() {
   return (
@@ -18,8 +19,13 @@ export default function About() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/3">
-              <div className="bg-gray-200 rounded-lg aspect-square flex items-center justify-center text-gray-400">
-                Photo Profil
+              <div className="relative aspect-square rounded-lg overflow-hidden shadow-lg">
+                <Image
+                  src="/pp.jpeg"
+                  alt="Photo de profil Eurekadev"
+                  fill
+                  className="object-cover"
+                />
               </div>
             </div>
             <div className="md:w-2/3">
@@ -103,4 +109,3 @@ export default function About() {
     </div>
   );
 }
-
