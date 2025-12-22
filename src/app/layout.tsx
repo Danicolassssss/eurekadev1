@@ -27,11 +27,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body
+    <head>
+      <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
+      <link rel="manifest" href="/site.webmanifest"/>
+    </head>
+    <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
-      >
-        <div className="bg-yellow-400 text-yellow-900 text-center py-2 px-4 font-medium text-sm">
-          🚧 Site en construction - Certaines fonctionnalités peuvent être limitées. 🚧
+    >
+    <div className="bg-yellow-400 text-yellow-900 text-center py-2 px-4 font-medium text-sm">
+      🚧 Site en construction - Certaines fonctionnalités peuvent être limitées. 🚧
         </div>
         <Header />
         <main className="flex-grow">{children}</main>
