@@ -22,7 +22,7 @@ export default function Services() {
               <div className="text-indigo-600 font-bold mb-2 uppercase tracking-wide">Sur mesure</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Création de site web</h2>
               <p className="text-gray-600 mb-6 text-lg">
-                Sites vitrines, portfolios, ou petits e-commerce. Nous concevons des sites responsives, rapides et adaptés à votre budget.
+                Sites vitrines, portfolios, ou petits e-commerce. Je conçois des sites responsives, rapides et adaptés à votre budget.
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-700">
@@ -104,7 +104,7 @@ export default function Services() {
               <div className="text-indigo-600 font-bold mb-2 uppercase tracking-wide">Visibilité</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">SEO & Contenu</h2>
               <p className="text-gray-600 mb-6 text-lg">
-                Un beau site ne sert à rien si personne ne le trouve. Nous optimisons votre site pour qu'il plaise à Google et à vos clients.
+                Un beau site ne sert à rien si personne ne le trouve. J'optimise votre site pour qu'il plaise à Google et à vos clients.
               </p>
               <ul className="space-y-3 mb-8">
                 <li className="flex items-center text-gray-700">
@@ -144,7 +144,7 @@ export default function Services() {
               <div className="text-indigo-600 font-bold mb-2 uppercase tracking-wide">Sérénité</div>
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Maintenance & Support</h2>
               <p className="text-gray-600 mb-6 text-lg">
-                Ne laissez pas votre site à l'abandon. Nous assurons sa sécurité et ses mises à jour pour que vous puissiez vous concentrer sur votre métier.
+                Ne laissez pas votre site à l'abandon. J'assure sa sécurité et ses mises à jour pour que vous puissiez vous concentrer sur votre métier.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                 <div className="bg-gray-50 p-4 rounded border border-gray-200">
@@ -180,7 +180,7 @@ export default function Services() {
             Discutons de vos besoins et trouvons la solution adaptée à votre budget.
           </p>
           <Link href="/contact" className="px-8 py-3 bg-white text-indigo-600 font-bold rounded hover:bg-indigo-50 transition-colors inline-block">
-            Contactez-nous
+            Contactez-moi
           </Link>
         </div>
       </section>

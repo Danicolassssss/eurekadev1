@@ -7,7 +7,7 @@ export default function About() {
       {/* Hero Section */}
       <section className="bg-gray-50 py-16">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">À propos d'Eurekadev</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">À propos de moi</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Plus qu'une agence web, un partenaire technique pour votre réussite en ligne.
           </p>
@@ -68,7 +68,7 @@ export default function About() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold mb-4">Ce qui change pour vous</h2>
             <p className="text-indigo-200 max-w-2xl mx-auto">
-              Travailler avec Eurekadev, c'est choisir une approche différente des grosses agences ou des plateformes automatisées.
+              Travailler avec moi, c'est choisir une approche différente des grosses agences ou des plateformes automatisées.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">

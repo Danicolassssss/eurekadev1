@@ -12,7 +12,7 @@ export default function Home() {
                 Création et refonte de sites web qui travaillent pour votre activité.
               </h1>
               <p className="text-xl text-gray-600 mb-8">
-                Eurekadev conçoit des sites rapides, SEO-friendly et faciles à gérer pour artisans, indépendants et petites entreprises.
+                Je conçois des sites rapides, SEO-friendly et faciles à gérer pour artisans, indépendants et petites entreprises.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/realisations" className="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-md hover:bg-indigo-700 transition-colors text-center">
@@ -39,7 +39,7 @@ export default function Home() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ce que fait Eurekadev</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Ce que je propose</h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Des solutions complètes pour votre présence en ligne, de la conception à la maintenance.
             </p>
@@ -83,7 +83,7 @@ export default function Home() {
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Projets tests, qualité réelle</h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Eurekadev est en phase de lancement. Les projets présentés ci-dessous sont fictifs, mais traités comme de vrais mandats clients : cahier des charges, maquettes, développement, SEO, performance.
+              Je suis en phase de lancement. Les projets présentés ci-dessous sont fictifs, mais traités comme de vrais mandats clients : cahier des charges, maquettes, développement, SEO, performance.
             </p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
@@ -130,7 +130,7 @@ export default function Home() {
       <section className="py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Notre process en 4 étapes</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Mon process en 4 étapes</h2>
             <p className="text-lg text-gray-600">Simple, transparent et efficace.</p>
           </div>
           <div className="grid md:grid-cols-4 gap-8 relative">
@@ -200,4 +200,3 @@ export default function Home() {
     </div>
   );
 }
-

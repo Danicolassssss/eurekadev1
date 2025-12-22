@@ -92,7 +92,7 @@ export default function Realisations() {
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Réalisations & Projets tests</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Les projets ci-dessous sont des cas fictifs, réalisés comme de vrais projets clients pour démontrer le niveau de qualité et la méthode de travail d'Eurekadev.
+            Les projets ci-dessous sont des cas fictifs, réalisés comme de vrais projets clients pour démontrer mon niveau de qualité et ma méthode de travail.
           </p>
         </div>
       </section>
