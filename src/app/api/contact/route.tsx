@@ -31,8 +31,8 @@ export async function POST(request: Request) {
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        from: 'Eurekadev <contact@eurekadev.fr>',
-        to: ['contact@eurekadev.fr'],
+        from: 'Eurekadev <hello@eurekadev.fr>',
+        to: ['hello@eurekadev.fr'],
         subject: 'Nouvelle demande de contact - Eurekadev',
         html: adminHtml,
       }),

@@ -23,7 +23,7 @@ export default function Footer() {
           </div>
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact</h4>
-            <p className="text-gray-400">contact@eurekadev.fr</p>
+            <p className="text-gray-400">hello@eurekadev.fr</p>
             <p className="text-gray-400 mt-2">Bourgogne-Franche-Comté / Paris</p>
           </div>
         </div>

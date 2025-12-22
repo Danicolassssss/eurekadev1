@@ -6,7 +6,7 @@ Info	Détail
 Nom	Eurekadev
 Secteur	Création & refonte de sites web, SEO, maintenance
 Localisation	Paris / Bourgogne-Franche-Comté (prestation à distance, France entière)
-Contact	contact@eurekadev.fr (exemple) / formulaire de contact
+Contact	hello@eurekadev.fr (exemple) / formulaire de contact
 Horaires	Sur rendez-vous (lun–ven)
 Statut	Studio web indépendant / micro-entreprise
 Effectif	1 développeur (full‑stack) + réseau de freelances si besoin

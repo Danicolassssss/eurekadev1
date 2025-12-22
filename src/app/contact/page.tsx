@@ -193,7 +193,7 @@ export default function Contact() {
           </div>
 
           <div className="mt-12 text-center text-gray-600">
-            <p>Ou contactez-moi directement par email : <a href="mailto:contact@eurekadev.fr" className="text-indigo-600 font-semibold hover:underline">contact@eurekadev.fr</a></p>
+<p>Ou contactez-moi directement par email : <a href="mailto:hello@eurekadev.fr" className="text-indigo-600 font-semibold hover:underline">hello@eurekadev.fr</a></p>
           </div>
         </div>
       </section>
