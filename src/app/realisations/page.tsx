@@ -16,6 +16,13 @@ export default function Realisations() {
     "/lamdp4.png"
   ];
 
+  const ap21Images = [
+    "/ap21-1.png",
+    "/ap21-2.png",
+    "/ap21-3.png",
+    "/ap21-4.png"
+  ];
+
   const openLightbox = (images: string[], index: number) => {
     setCurrentImages(images);
     setCurrentImageIndex(index);
@@ -169,13 +176,39 @@ export default function Realisations() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row-reverse gap-12">
             <div className="lg:w-1/2">
-              <div className="bg-gray-200 rounded-lg aspect-video flex items-center justify-center text-gray-400 mb-4">
-                Image Auto Performance 21
+              <div
+                className="relative bg-gray-200 rounded-lg aspect-video flex items-center justify-center text-gray-400 mb-4 overflow-hidden shadow-lg cursor-pointer hover:opacity-95 transition-opacity"
+                onClick={() => openLightbox(ap21Images, 0)}
+              >
+                <Image
+                  src="/ap21-1.png"
+                  alt="Auto Performance 21 - Accueil"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black bg-opacity-20">
+                  <span className="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded">Agrandir</span>
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gray-100 rounded h-24"></div>
-                <div className="bg-gray-100 rounded h-24"></div>
-                <div className="bg-gray-100 rounded h-24"></div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(ap21Images, 1)}
+                >
+                  <Image src="/ap21-2.png" alt="Détail 1" fill className="object-cover" />
+                </div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(ap21Images, 2)}
+                >
+                  <Image src="/ap21-3.png" alt="Détail 2" fill className="object-cover" />
+                </div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(ap21Images, 3)}
+                >
+                  <Image src="/ap21-4.png" alt="Détail 3" fill className="object-cover" />
+                </div>
               </div>
             </div>
             <div className="lg:w-1/2">
@@ -201,7 +234,7 @@ export default function Realisations() {
                 <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Formulaire de contact avancé</span>
               </div>
 
-              <Link href="#" className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition-colors">
+              <Link href="https://autoperf21.netlify.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition-colors">
                 Visiter le site (Démo)
               </Link>
             </div>
