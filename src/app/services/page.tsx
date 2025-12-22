@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Services() {
   return (
@@ -41,8 +42,13 @@ export default function Services() {
                 Demander un devis création →
               </Link>
             </div>
-            <div className="md:w-1/2 bg-gray-100 rounded-lg h-64 flex items-center justify-center text-gray-400">
-              Image Création
+            <div className="md:w-1/2 relative h-64 rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/creationdesiteweb.jpeg"
+                alt="Création de site web"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
@@ -78,8 +84,13 @@ export default function Services() {
                 Discuter d'une refonte →
               </Link>
             </div>
-            <div className="md:w-1/2 bg-gray-100 rounded-lg h-64 flex items-center justify-center text-gray-400">
-              Image Refonte
+            <div className="md:w-1/2 relative h-64 rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/refontedesiteweb.jpeg"
+                alt="Refonte de site web"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
@@ -113,8 +124,13 @@ export default function Services() {
                 Booster ma visibilité →
               </Link>
             </div>
-            <div className="md:w-1/2 bg-gray-100 rounded-lg h-64 flex items-center justify-center text-gray-400">
-              Image SEO
+            <div className="md:w-1/2 relative h-64 rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/seo.jpeg"
+                alt="SEO & Contenu"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
@@ -144,8 +160,13 @@ export default function Services() {
                 Voir les offres de maintenance →
               </Link>
             </div>
-            <div className="md:w-1/2 bg-gray-100 rounded-lg h-64 flex items-center justify-center text-gray-400">
-              Image Maintenance
+            <div className="md:w-1/2 relative h-64 rounded-lg overflow-hidden shadow-lg">
+              <Image
+                src="/maintenace.jpeg"
+                alt="Maintenance & Support"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
