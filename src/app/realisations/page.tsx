@@ -23,6 +23,13 @@ export default function Realisations() {
     "/ap21-4.png"
   ];
 
+  const lplImages = [
+    "/lpl1.png",
+    "/lpl2.png",
+    "/lpl3.png",
+    "/lpl4.png"
+  ];
+
   const openLightbox = (images: string[], index: number) => {
     setCurrentImages(images);
     setCurrentImageIndex(index);
@@ -242,41 +249,68 @@ export default function Realisations() {
         </div>
       </section>
 
-      {/* Project 3: PixelNova Digital */}
-      <section id="pixelnova" className="py-20">
+      {/* Project 3: Les Petits Liens */}
+      <section id="les-petits-liens" className="py-20">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row gap-12">
             <div className="lg:w-1/2">
-              <div className="bg-gray-200 rounded-lg aspect-video flex items-center justify-center text-gray-400 mb-4">
-                Image PixelNova
+              <div
+                className="relative bg-gray-200 rounded-lg aspect-video flex items-center justify-center text-gray-400 mb-4 overflow-hidden shadow-lg cursor-pointer hover:opacity-95 transition-opacity"
+                onClick={() => openLightbox(lplImages, 0)}
+              >
+                <Image
+                  src="/lpl1.png"
+                  alt="Les Petits Liens - Accueil"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity bg-black bg-opacity-20">
+                  <span className="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded">Agrandir</span>
+                </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                <div className="bg-gray-100 rounded h-24"></div>
-                <div className="bg-gray-100 rounded h-24"></div>
-                <div className="bg-gray-100 rounded h-24"></div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(lplImages, 1)}
+                >
+                  <Image src="/lpl2.png" alt="Détail 1" fill className="object-cover" />
+                </div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(lplImages, 2)}
+                >
+                  <Image src="/lpl3.png" alt="Détail 2" fill className="object-cover" />
+                </div>
+                <div
+                  className="relative bg-gray-100 rounded h-24 overflow-hidden shadow-sm cursor-pointer hover:opacity-95 transition-opacity"
+                  onClick={() => openLightbox(lplImages, 3)}
+                >
+                  <Image src="/lpl4.png" alt="Détail 3" fill className="object-cover" />
+                </div>
               </div>
             </div>
             <div className="lg:w-1/2">
-              <div className="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm font-semibold mb-4">
-                Site Agence B2B
+              <div className="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-semibold mb-4">
+                Site Micro-crèche
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">PixelNova Digital</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-4">Les Petits Liens</h2>
               <p className="text-gray-600 mb-6">
-                Agence web fictive. Site orienté services et conversion pour une clientèle B2B.
+                Une micro-crèche chaleureuse, design et inclusive au cœur de votre quartier. Un lieu à taille humaine pour accompagner les premières années de votre enfant.
               </p>
 
               <h3 className="text-xl font-bold text-gray-900 mb-3">Objectifs</h3>
               <ul className="list-disc list-inside text-gray-600 mb-6 space-y-1">
-                <li>Montrer une expertise technique et marketing</li>
-                <li>Structurer l'offre de services (Création, Refonte, SEO)</li>
-                <li>Générer des leads qualifiés</li>
+                <li>Présenter le projet pédagogique (Montessori, Loczy)</li>
+                <li>Rassurer les parents (équipe, sécurité, inclusion)</li>
+                <li>Faciliter les pré-inscriptions et le contact</li>
               </ul>
 
               <h3 className="text-xl font-bold text-gray-900 mb-3">Ce qui a été fait</h3>
               <div className="flex flex-wrap gap-2 mb-8">
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Architecture B2B</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Blog SEO</span>
-                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Pages Landing</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Design apaisant</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Présentation équipe</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Formulaire pré-inscription</span>
+                <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Infos pratiques</span>
               </div>
 
               <Link href="#" className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition-colors">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -25,9 +26,14 @@ export default function Home() {
             </div>
             <div className="lg:w-1/2 relative">
               <div className="bg-white p-4 rounded-lg shadow-xl border border-gray-100 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                {/* Placeholder for Hero Image */}
-                <div className="aspect-video bg-gray-200 rounded flex items-center justify-center text-gray-400">
-                  <span className="text-lg">Aperçu site moderne</span>
+                {/* Hero Image */}
+                <div className="aspect-video bg-gray-200 rounded flex items-center justify-center text-gray-400 overflow-hidden relative">
+                  <Image
+                    src="/sitemoderne.jpeg"
+                    alt="Aperçu site moderne"
+                    fill
+                    className="object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -92,25 +98,32 @@ export default function Home() {
                 title: "La Maison des Pains",
                 type: "Boulangerie Artisanale",
                 desc: "Site vitrine + catalogue produits. Mise en avant du savoir-faire et des produits phares.",
-                link: "/realisations#maison-des-pains"
+                link: "/realisations#maison-des-pains",
+                image: "/lamdp1.png"
               },
               {
                 title: "Auto Performance 21",
                 type: "Garage Automobile",
                 desc: "Site vitrine + services + prise de RDV. Présentation des prestations et équipe.",
-                link: "/realisations#auto-performance"
+                link: "/realisations#auto-performance",
+                image: "/ap21-1.png"
               },
               {
-                title: "PixelNova Digital",
-                type: "Agence Web B2B",
-                desc: "Site B2B. Création, refonte, SEO et maintenance. Orienté conversion.",
-                link: "/realisations#pixelnova"
+                title: "Les Petits Liens",
+                type: "Micro-crèche",
+                desc: "Site vitrine pour micro-crèche. Présentation du projet pédagogique et informations pratiques.",
+                link: "/realisations#les-petits-liens",
+                image: "/lpl1.png"
               }
             ].map((project, index) => (
               <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow flex flex-col">
-                <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400">
-                  {/* Placeholder for Project Image */}
-                  <span>Image {project.title}</span>
+                <div className="h-48 bg-gray-200 flex items-center justify-center text-gray-400 relative">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-6 flex-grow flex flex-col">
                   <div className="text-sm text-indigo-600 font-semibold mb-2">{project.type}</div>
