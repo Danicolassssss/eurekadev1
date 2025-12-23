@@ -313,7 +313,7 @@ export default function Realisations() {
                 <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded text-sm">Infos pratiques</span>
               </div>
 
-              <Link href="#" className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition-colors">
+              <Link href="https://lespetitsliens.netlify.app/" className="inline-flex items-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition-colors">
                 Visiter le site (Démo)
               </Link>
             </div>
