@@ -10,7 +10,7 @@ const PACKS = [
     id: 'essentiel',
     name: 'Pack Essentiel',
     description: 'Site vitrine 3-4 pages, idéal pour démarrer.',
-    features: ['3-4 pages', 'Design moderne responsive', 'Formulaire de contact', 'Optimisation mobile', '1 round de modifications'],
+    features: ['3-4 pages', 'Design moderne responsive', 'Formulaire de contact', 'Optimisation mobile', '3 round de modifications'],
     priceMin: 1200,
     priceMax: 1500,
   },
@@ -18,7 +18,7 @@ const PACKS = [
     id: 'pro',
     name: 'Pack Pro',
     description: 'Site 5-6 pages avec blog et fonctionnalités avancées.',
-    features: ['5-6 pages', 'Design sur-mesure', 'Blog intégré', 'SEO de base', 'Formulaires avancés', 'Animations', '2 rounds de modifications'],
+    features: ['5-6 pages', 'Design sur-mesure', 'Blog intégré', 'SEO de base', 'Formulaires avancés', 'Animations', '5 rounds de modifications'],
     priceMin: 2000,
     priceMax: 2800,
     popular: true,
@@ -27,7 +27,7 @@ const PACKS = [
     id: 'premium',
     name: 'Pack Premium',
     description: 'Site complet 6-10 pages avec fonctionnalités sur mesure.',
-    features: ['6-10 pages', 'Design unique', 'Fonctionnalités avancées (réservation...)', 'SEO complet', 'Rédaction (8 pages)', 'Formation gestion', '3 rounds de modifications'],
+    features: ['6-10 pages', 'Design unique', 'Fonctionnalités avancées (réservation...)', 'SEO complet', 'Rédaction (8 pages)', 'Formation gestion', '10 rounds de modifications'],
     priceMin: 3500,
     priceMax: 5000,
   },
@@ -63,6 +63,15 @@ const SEO_MARKETING_OPTIONS = [
   { id: 'social', name: 'Gestion réseaux sociaux (basique)', min: 200, max: 400, type: 'monthly' },
 ];
 
+const COMMITMENT_DISCOUNTS = [
+  { years: 0, label: 'Sans engagement', discount: 0 },
+  { years: 1, label: '1 an', discount: 0.10 },
+  { years: 2, label: '2 ans', discount: 0.15 },
+  { years: 3, label: '3 ans', discount: 0.20 },
+  { years: 4, label: '4 ans', discount: 0.25 },
+  { years: 5, label: '5 ans', discount: 0.30 },
+];
+
 export default function TarifsPage() {
   // --- State ---
   const [selectedPack, setSelectedPack] = useState<string | null>(null); // 'essentiel', 'pro', 'premium', or null
@@ -73,6 +82,7 @@ export default function TarifsPage() {
   const [selectedMaintenance, setSelectedMaintenance] = useState('none');
   const [selectedSeo, setSelectedSeo] = useState<string[]>([]);
   const [isFirstClient] = useState(true);
+  const [commitmentYears, setCommitmentYears] = useState(0);
 
   // --- Helpers ---
   const toggleOption = (id: string, list: string[], setList: (l: string[]) => void) => {
@@ -146,6 +156,13 @@ export default function TarifsPage() {
       }
     });
 
+    // Apply Commitment Discount on Monthly
+    const discount = COMMITMENT_DISCOUNTS.find(c => c.years === commitmentYears)?.discount || 0;
+    if (minMonthly > 0 && discount > 0) {
+      minMonthly = Math.round(minMonthly * (1 - discount));
+      maxMonthly = Math.round(maxMonthly * (1 - discount));
+    }
+
     // Apply Discount
     if (isFirstClient) {
       minTotal = Math.round(minTotal * 0.67);
@@ -153,7 +170,7 @@ export default function TarifsPage() {
     }
 
     return { minTotal, maxTotal, minMonthly, maxMonthly, minYearly, maxYearly };
-  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo, isFirstClient]);
+  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo, isFirstClient, commitmentYears]);
 
   const contactUrl = useMemo(() => {
     const params = new URLSearchParams();
@@ -193,6 +210,12 @@ export default function TarifsPage() {
         summary += `🛠️ Maintenance : ${m?.name}\n`;
     }
 
+     // Commitment
+    if (commitmentYears > 0) {
+        const d = COMMITMENT_DISCOUNTS.find(c => c.years === commitmentYears);
+        summary += `🤝 Engagement : ${d?.label} (-${(d?.discount || 0) * 100}% sur le mensuel)\n`;
+    }
+
      // 6. SEO
     if (selectedSeo.length > 0) {
       summary += `🚀 Marketing / SEO :\n`;
@@ -210,7 +233,7 @@ export default function TarifsPage() {
     // 7. Estimations
     summary += `\n💰 Estimation indicative :\n`;
     summary += `   - Initial : ${estimate.minTotal}€ - ${estimate.maxTotal}€ ${isFirstClient ? '(Remisé)' : ''}\n`;
-    if (estimate.maxMonthly > 0) summary += `   - Mensuel : ${estimate.minMonthly}€ - ${estimate.maxMonthly}€\n`;
+    if (estimate.maxMonthly > 0) summary += `   - Mensuel : ${estimate.minMonthly}€ - ${estimate.maxMonthly}€ ${commitmentYears > 0 ? `(Engagement ${commitmentYears} ans)` : ''}\n`;
     if (estimate.maxYearly > 0) summary += `   - Annuel : ${estimate.minYearly}€ - ${estimate.maxYearly}€\n`;
 
     summary += "\nMerci de me recontacter pour affiner ce projet.";
@@ -220,7 +243,7 @@ export default function TarifsPage() {
 
     // Determine budget category
     const avgPrice = (estimate.minTotal + estimate.maxTotal) / 2;
-    let budgetCategory = '';
+    let budgetCategory;
 
     if (avgPrice < 1000) budgetCategory = 'small';
     else if (avgPrice < 3000) budgetCategory = 'medium';
@@ -232,7 +255,7 @@ export default function TarifsPage() {
     }
 
     return `/contact?${params.toString()}`;
-  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo, estimate, isFirstClient]);
+  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo, estimate, isFirstClient, commitmentYears]);
 
 
   return (
@@ -240,7 +263,7 @@ export default function TarifsPage() {
       <div className="container mx-auto px-4">
 
         {/* Promo Banner */}
-        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 mb-16 text-white shadow-xl relative overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
+        <div className="bg-linear-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 mb-16 text-white shadow-xl relative overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
           <div className="absolute top-0 right-0 -mt-10 -mr-10 bg-white/10 w-40 h-40 rounded-full blur-2xl"></div>
           <div className="absolute bottom-0 left-0 -mb-10 -ml-10 bg-black/10 w-40 h-40 rounded-full blur-2xl"></div>
 
@@ -255,7 +278,7 @@ export default function TarifsPage() {
                 Pour fêter le lancement, je vous offre une réduction exceptionnelle sur la création de votre site internet. L'offre est automatiquement appliquée sur tous les devis ci-dessous.
               </p>
             </div>
-            <div className="flex flex-col items-center bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-inner min-w-[150px]">
+            <div className="flex flex-col items-center bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-inner min-w-37.5">
               <span className="text-sm font-medium text-indigo-200 uppercase tracking-wide">Réduction</span>
               <span className="text-5xl font-black text-white">-33%</span>
               <span className="text-xs text-indigo-200 mt-1">Appliquée immédiatement</span>
@@ -399,7 +422,7 @@ export default function TarifsPage() {
 
                   <div>
                      <h4 className="text-sm font-semibold text-gray-700 mb-3 uppercase tracking-wider">Maintenance (Mensuel)</h4>
-                     <div className="space-y-2">
+                     <div className="space-y-2 mb-4">
                       {MAINTENANCE_OPTIONS.map(opt => (
                         <label key={opt.id} className="flex items-center">
                           <input
@@ -413,6 +436,27 @@ export default function TarifsPage() {
                         </label>
                       ))}
                     </div>
+
+                    {selectedMaintenance !== 'none' && (
+                      <div className="bg-indigo-50 p-3 rounded-md border border-indigo-100">
+                         <label className="block text-xs font-bold text-indigo-800 mb-2 uppercase">Durée d'engagement (Réduction mensuelle)</label>
+                         <div className="flex flex-wrap gap-2">
+                            {COMMITMENT_DISCOUNTS.map((opt) => (
+                              <button
+                                key={opt.years}
+                                onClick={() => setCommitmentYears(opt.years)}
+                                className={`text-xs px-2 py-1 rounded border transition-colors ${
+                                  commitmentYears === opt.years 
+                                  ? 'bg-indigo-600 text-white border-indigo-600' 
+                                  : 'bg-white text-gray-600 border-gray-200 hover:border-indigo-300'
+                                }`}
+                              >
+                                {opt.label} {opt.discount > 0 && `(-${opt.discount * 100}%)`}
+                              </button>
+                            ))}
+                         </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </section>
@@ -482,6 +526,11 @@ export default function TarifsPage() {
                         {estimate.minMonthly}€ - {estimate.maxMonthly}€ <span className="text-sm font-normal text-gray-500">/mois</span>
                       </div>
                       <p className="text-xs text-gray-400 mt-1">Maintenance, SEO mensuel...</p>
+                      {commitmentYears > 0 && (
+                        <p className="text-xs text-green-600 font-semibold mt-1">
+                          Inclus remise engagement {commitmentYears} ans (-{COMMITMENT_DISCOUNTS.find(c=>c.years===commitmentYears)?.discount! * 100}%)
+                        </p>
+                      )}
                     </div>
                   )}
 
