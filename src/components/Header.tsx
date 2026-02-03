@@ -21,6 +21,9 @@ export default function Header() {
           <Link href="/services" className="text-gray-700 hover:text-indigo-600 transition-colors">
             Services
           </Link>
+          <Link href="/tarifs" className="text-gray-700 hover:text-indigo-600 transition-colors">
+            Tarifs
+          </Link>
           <Link href="/realisations" className="text-gray-700 hover:text-indigo-600 transition-colors">
             Réalisations
           </Link>
@@ -66,6 +69,13 @@ export default function Header() {
               Services
             </Link>
             <Link
+              href="/tarifs"
+              className="block py-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 px-2 rounded"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Tarifs
+            </Link>
+            <Link
               href="/realisations"
               className="block py-2 text-gray-700 hover:text-indigo-600 hover:bg-gray-50 px-2 rounded"
               onClick={() => setIsMenuOpen(false)}
@@ -92,6 +102,3 @@ export default function Header() {
     </header>
   );
 }
-
-
-

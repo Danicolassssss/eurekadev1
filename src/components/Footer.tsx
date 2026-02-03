@@ -16,6 +16,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li><Link href="/" className="text-gray-400 hover:text-white transition-colors">Accueil</Link></li>
               <li><Link href="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
+              <li><Link href="/tarifs" className="text-gray-400 hover:text-white transition-colors">Tarifs</Link></li>
               <li><Link href="/realisations" className="text-gray-400 hover:text-white transition-colors">Réalisations</Link></li>
               <li><Link href="/a-propos" className="text-gray-400 hover:text-white transition-colors">À propos</Link></li>
               <li><Link href="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
@@ -34,4 +35,3 @@ export default function Footer() {
     </footer>
   );
 }
-

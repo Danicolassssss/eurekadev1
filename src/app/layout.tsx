@@ -38,9 +38,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
     >
       <GoogleAnalytics gaId="G-YXLWWR34YE" />
-    <div className="bg-yellow-400 text-yellow-900 text-center py-2 px-4 font-medium text-sm">
-      🚧 Site en construction - Certaines fonctionnalités peuvent être limitées. 🚧
-        </div>
         <Header />
         <main className="flex-grow">{children}</main>
         <Footer />

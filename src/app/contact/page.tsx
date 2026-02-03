@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 
-export default function Contact() {
+function ContactForm() {
+  const searchParams = useSearchParams();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -12,6 +14,17 @@ export default function Contact() {
     message: ''
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  useEffect(() => {
+    const message = searchParams.get('message');
+    const budgetParam = searchParams.get('budget');
+
+    setFormData(prev => ({
+      ...prev,
+      ...(message ? { message } : {}),
+      ...(budgetParam ? { budget: budgetParam } : {})
+    }));
+  }, [searchParams]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -198,5 +211,13 @@ export default function Contact() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function Contact() {
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <ContactForm />
+    </Suspense>
   );
 }
