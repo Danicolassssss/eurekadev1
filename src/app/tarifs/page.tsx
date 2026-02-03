@@ -72,6 +72,7 @@ export default function TarifsPage() {
   const [selectedHosting, setSelectedHosting] = useState('none');
   const [selectedMaintenance, setSelectedMaintenance] = useState('none');
   const [selectedSeo, setSelectedSeo] = useState<string[]>([]);
+  const [isFirstClient] = useState(true);
 
   // --- Helpers ---
   const toggleOption = (id: string, list: string[], setList: (l: string[]) => void) => {
@@ -145,8 +146,14 @@ export default function TarifsPage() {
       }
     });
 
+    // Apply Discount
+    if (isFirstClient) {
+      minTotal = Math.round(minTotal * 0.67);
+      maxTotal = Math.round(maxTotal * 0.67);
+    }
+
     return { minTotal, maxTotal, minMonthly, maxMonthly, minYearly, maxYearly };
-  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo]);
+  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo, isFirstClient]);
 
   const contactUrl = useMemo(() => {
     const params = new URLSearchParams();
@@ -195,9 +202,14 @@ export default function TarifsPage() {
       });
     }
 
+    // Discount
+    if (isFirstClient) {
+      summary += `🎁 Offre Lancement : -33% appliquée\n`;
+    }
+
     // 7. Estimations
     summary += `\n💰 Estimation indicative :\n`;
-    summary += `   - Initial : ${estimate.minTotal}€ - ${estimate.maxTotal}€\n`;
+    summary += `   - Initial : ${estimate.minTotal}€ - ${estimate.maxTotal}€ ${isFirstClient ? '(Remisé)' : ''}\n`;
     if (estimate.maxMonthly > 0) summary += `   - Mensuel : ${estimate.minMonthly}€ - ${estimate.maxMonthly}€\n`;
     if (estimate.maxYearly > 0) summary += `   - Annuel : ${estimate.minYearly}€ - ${estimate.maxYearly}€\n`;
 
@@ -220,12 +232,36 @@ export default function TarifsPage() {
     }
 
     return `/contact?${params.toString()}`;
-  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo, estimate]);
+  }, [selectedPack, extraPages, contentPages, selectedOptions, selectedHosting, selectedMaintenance, selectedSeo, estimate, isFirstClient]);
 
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="container mx-auto px-4">
+
+        {/* Promo Banner */}
+        <div className="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl p-8 mb-16 text-white shadow-xl relative overflow-hidden transform hover:scale-[1.01] transition-transform duration-300">
+          <div className="absolute top-0 right-0 -mt-10 -mr-10 bg-white/10 w-40 h-40 rounded-full blur-2xl"></div>
+          <div className="absolute bottom-0 left-0 -mb-10 -ml-10 bg-black/10 w-40 h-40 rounded-full blur-2xl"></div>
+
+          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="bg-yellow-400 text-indigo-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">Offre Limitée</span>
+                <span className="bg-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">10 Premiers Clients</span>
+              </div>
+              <h2 className="text-3xl font-extrabold mb-3 leading-tight">Lancement Eurekadev : <span className="text-yellow-300">-33% sur la création</span> !</h2>
+              <p className="text-indigo-100 text-lg max-w-2xl">
+                Pour fêter le lancement, je vous offre une réduction exceptionnelle sur la création de votre site internet. L'offre est automatiquement appliquée sur tous les devis ci-dessous.
+              </p>
+            </div>
+            <div className="flex flex-col items-center bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 shadow-inner min-w-[150px]">
+              <span className="text-sm font-medium text-indigo-200 uppercase tracking-wide">Réduction</span>
+              <span className="text-5xl font-black text-white">-33%</span>
+              <span className="text-xs text-indigo-200 mt-1">Appliquée immédiatement</span>
+            </div>
+          </div>
+        </div>
 
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -413,11 +449,21 @@ export default function TarifsPage() {
 
                 <div className="space-y-6">
                   {/* One Shot Cost */}
-                  <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <div className="bg-white p-4 rounded-lg shadow-sm relative overflow-hidden">
+                    {isFirstClient && (
+                      <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-bl">
+                        PROMO -33%
+                      </div>
+                    )}
                     <p className="text-sm text-gray-500 mb-1">Coût création (One-shot)</p>
                     <div className="text-3xl font-bold text-indigo-600">
                       {estimate.minTotal.toLocaleString()}€ - {estimate.maxTotal.toLocaleString()}€
                     </div>
+                    {isFirstClient && (selectedPack || extraPages > 0 || selectedOptions.length > 0) && (
+                       <p className="text-xs text-gray-400 line-through mt-1">
+                         {Math.round(estimate.minTotal / 0.67).toLocaleString()}€ - {Math.round(estimate.maxTotal / 0.67).toLocaleString()}€
+                       </p>
+                    )}
                     {(selectedPack || extraPages > 0 || selectedOptions.length > 0) ? (
                       <p className="text-xs text-green-600 mt-2 flex items-center">
                          <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd"></path></svg>
